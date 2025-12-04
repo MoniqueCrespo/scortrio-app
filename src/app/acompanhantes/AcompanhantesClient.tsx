@@ -233,6 +233,60 @@ export default function AcompanhantesClient({ initialCidade, initialCategoria }:
           </div>
         )}
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="col-span-2 md:col-span-1">
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold">S</span>
+                </div>
+                <span className="text-lg font-bold text-white">ScortRio</span>
+              </Link>
+              <p className="text-sm">
+                A plataforma mais segura para encontrar acompanhantes verificadas.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Navegação</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/acompanhantes" className="hover:text-orange-500 transition-colors">Acompanhantes</Link></li>
+                <li><Link href="/planos" className="hover:text-orange-500 transition-colors">Planos</Link></li>
+                <li><Link href="/cadastro" className="hover:text-orange-500 transition-colors">Anunciar</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Suporte</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Central de Ajuda</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Contato</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-4">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Termos de Uso</a></li>
+                <li><a href="#" className="hover:text-orange-500 transition-colors">Privacidade</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+            <p className="text-sm">
+              © {new Date().getFullYear()} ScortRio. Todos os direitos reservados.
+            </p>
+            <p className="text-xs mt-2 text-gray-500">
+              Este site é destinado apenas para maiores de 18 anos.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
