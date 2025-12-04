@@ -161,7 +161,7 @@ export default function HomePage() {
             {cidades.slice(0, 12).map(cidade => (
               <Link 
                 key={cidade.id} 
-                href={`/acompanhantes?cidade=${cidade.slug}`}
+                href={`/acompanhantes/${cidade.slug}`}
                 className="group"
               >
                 <Card hover className="p-4 text-center">

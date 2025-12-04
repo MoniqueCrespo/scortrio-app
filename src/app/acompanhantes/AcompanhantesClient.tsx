@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { api, Acompanhante, Cidade, Categoria } from '@/lib/api';
 import { Button, Card, Badge, Spinner } from '@/components/ui';
@@ -10,9 +11,15 @@ import { formatCurrency } from '@/lib/utils';
 interface AcompanhantesClientProps {
   initialCidade?: string;
   initialCategoria?: string;
+  cidadeFromUrl?: boolean;
 }
 
-export default function AcompanhantesClient({ initialCidade, initialCategoria }: AcompanhantesClientProps) {
+export default function AcompanhantesClient({ 
+  initialCidade, 
+  initialCategoria,
+  cidadeFromUrl = false
+}: AcompanhantesClientProps) {
+  const router = useRouter();
   const { isAuthenticated, logout } = useAuth();
   
   const [acompanhantes, setAcompanhantes] = useState<Acompanhante[]>([]);
@@ -83,21 +90,22 @@ export default function AcompanhantesClient({ initialCidade, initialCategoria }:
   }, [loadAcompanhantes]);
 
   const handleFilterChange = (name: string, value: string | boolean) => {
+    // Se mudou a cidade, navega para URL amigável
+    if (name === 'cidade') {
+      if (value && typeof value === 'string') {
+        router.push(`/acompanhantes/${value}`);
+      } else {
+        router.push('/acompanhantes');
+      }
+      return;
+    }
+    
     setFilters(prev => ({ ...prev, [name]: value }));
     setPage(1);
   };
 
   const clearFilters = () => {
-    setFilters({
-      cidade: '',
-      categoria: '',
-      preco_min: '',
-      preco_max: '',
-      verificada: false,
-      online: false,
-      ordenar: 'recentes',
-    });
-    setPage(1);
+    router.push('/acompanhantes');
   };
 
   const cidadeNome = filters.cidade 
