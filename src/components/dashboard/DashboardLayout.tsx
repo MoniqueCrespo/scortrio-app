@@ -74,18 +74,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
+    <div className="min-h-screen bg-gray-50">
       {/* Mobile header */}
-      <div className="lg:hidden bg-[#111113] border-b border-[#1c1c21] px-4 py-3 flex items-center justify-between">
+      <div className="lg:hidden bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
             <span className="text-white font-bold text-sm">S</span>
           </div>
-          <span className="text-xl font-bold text-white">ScortRio</span>
+          <span className="text-xl font-bold text-gray-800">ScortRio</span>
         </Link>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-2 rounded-xl hover:bg-[#1c1c21] text-[#a1a1aa] transition-colors"
+          className="p-2 rounded-xl hover:bg-gray-100 text-gray-600 transition-colors"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -96,25 +96,25 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-[#111113] border-r border-[#1c1c21] z-50 transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 z-50 transform transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="p-6 border-b border-[#1c1c21]">
+          <div className="p-6 border-b border-gray-100">
             <Link href="/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
                 <span className="text-white font-bold text-xl">S</span>
               </div>
-              <span className="text-2xl font-bold text-white">ScortRio</span>
+              <span className="text-2xl font-bold text-gray-800">ScortRio</span>
             </Link>
           </div>
 
@@ -127,47 +127,47 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive(item.href)
-                    ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
-                    : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                    ? 'bg-orange-50 text-orange-600 font-medium'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 {item.icon}
-                <span className="font-medium">{item.label}</span>
+                <span>{item.label}</span>
               </Link>
             ))}
           </nav>
 
           {/* User section */}
-          <div className="p-4 border-t border-[#1c1c21]">
-            <div className="flex items-center gap-3 px-4 py-3 mb-3 bg-[#16161a] rounded-xl">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+          <div className="p-4 border-t border-gray-100">
+            <div className="flex items-center gap-3 px-4 py-3 mb-3 bg-gray-50 rounded-xl">
+              <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-lg">
                 {user?.nome?.charAt(0).toUpperCase() || 'U'}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-white truncate">{user?.nome || 'Usuário'}</p>
+                <p className="font-semibold text-gray-800 truncate">{user?.nome || 'Usuário'}</p>
                 <div className="mt-1">{getPlanBadge()}</div>
               </div>
             </div>
 
             <Link
               href={user?.slug ? `/acompanhante/${user.slug}` : '/'}
-              className="flex items-center gap-3 px-4 py-3 text-[#a1a1aa] hover:bg-[#1c1c21] hover:text-white rounded-xl transition-all"
+              className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-all"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
-              <span className="font-medium">Ver meu anúncio</span>
+              <span>Ver meu anúncio</span>
             </Link>
 
             <button
               onClick={logout}
-              className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 hover:text-red-400 rounded-xl transition-all"
+              className="w-full flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-all"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
-              <span className="font-medium">Sair</span>
+              <span>Sair</span>
             </button>
           </div>
         </div>

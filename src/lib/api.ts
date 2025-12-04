@@ -28,6 +28,8 @@ export interface Acompanhante {
   destaque: boolean;
   plano: 'free' | 'premium' | 'vip';
   atende_local: boolean;
+  avaliacoes?: number;
+  total_fotos?: number;
 }
 
 export interface AcompanhanteCompleta extends Acompanhante {
